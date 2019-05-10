@@ -1,0 +1,41 @@
+{
+    "setting": {},
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": "${m}"
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "${readerType}",
+                    "parameter": {
+                        "username": "${username}",
+                        "password": "${password}",
+                        "column": ["*"],
+                        "connection": [
+                            {
+                                "jdbcUrl": ["${jdbcDriver}"],
+                                "table": ["${tableName}"]
+                            }
+                        ],
+                        "where": "${where}"
+                    }
+                },
+                "writer": {
+                    "name": "hdfswriter",
+                    "parameter": {
+                        "defaultFS": "hdfs://127.0.0.1:8020",
+                        "fileType": "orc",
+                        "path": "/user/hive/warehouse/{$hiveDatabase}.db/${hiveTable}/${partition}",
+                        "fileName": "${hiveTable}",
+                        "column": ["${hiveColumn}"],
+                        "fieldDelimiter": "\u0001",
+                        "writeMode": "append"
+                    }
+                }
+            }
+        ]
+    }
+}
