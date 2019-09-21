@@ -27,6 +27,8 @@ def get_engine_str(db_type):
         engine_str = "oracle+cx_oracle://{user}:{password}@{host}:{port}/{database}"
     elif db_type == "hive":
         engine_str = "hive://{user}@{host}:{port}/default"
+    elif db_type == "impala":
+        engine_str = "impala://{host}:{port}/default"
     else:
         raise Exception("DATABASE TYPE ERROR !")
     return engine_str
