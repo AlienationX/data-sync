@@ -24,7 +24,7 @@ HIVE_CONF = {
     "charset": "utf8"
 }
 
-# hadoop集群地址
+# hadoop集群地址（datax需要）
 HDFS = "hdfs://hi-prod-09.ego.com:8020"
 
 # python路径
