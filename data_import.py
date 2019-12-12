@@ -145,10 +145,10 @@ def pre_args():
         print("Error Message: -w 数据库链接名称不存在")
         sys.exit(1)
     if db != "" and db.lower() not in [x.lower() for x in db_names]:
-        print("Error Message: --db 库名不存在")
+        print("Error Message: --db 库名不存在", db.lower(), db_names)
         sys.exit(1)
     if tb != "" and tb.lower() not in [x.lower() for x in table_names]:
-        print("Error Message: --tb 表名不存在")
+        print("Error Message: --tb 表名不存在", tb.lower(), table_names )
         sys.exit(1)
     if tb != "" and args_dict["table_name"] != "":
         print("Error Message: --tb -s 不能同时指定")
@@ -212,7 +212,7 @@ def sqoop_import(row, where_str, map_column_hive_str):
     jdbc_extend = row["jdbc_extend"]
     username = "--username '{}' \t".format(row["user"])
     password = "--password '{}' \t".format(row["password"])
-    table_name = "--table {} \t".format(row["table_name"])
+    table_name = "--table {} \t".format(row["table_name"] if row["db_type"].lower() != "oracle" else row["table_name"].upper())  # oracle表名大写
     hive_import = "--hive-import \t"
     hive_overwrite = "--hive-overwrite \t" if row["is_overwrite"] == "1" else ""
     hive_table = "--hive-table {} \t".format(row["hive_database"] + "." + row["hive_table"])
