@@ -22,7 +22,8 @@ def get_engine_str(db_type):
     if db_type == "sqlserver":
         engine_str = "mssql+pymssql://{user}:{password}@{host}:{port}/{database}?charset=utf8"
     elif db_type == "mysql":
-        engine_str = "mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset=utf8"
+        engine_str = "mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}?charset=utf8"
+        # engine_str = "mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset=utf8"
     elif db_type == "oracle":
         engine_str = "oracle+cx_oracle://{user}:{password}@{host}:{port}/{database}"
     elif db_type == "hive":
